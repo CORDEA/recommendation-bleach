@@ -1,0 +1,15 @@
+{
+  "name": "recommendation-bleach",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Yoshihiro Tanaka <contact@cordea.jp>",
+  "license": "Apache-2.0",
+  "private": true,
+  "devDependencies": {
+    "@types/chrome": "^0.0.183",
+    "typescript": "^4.6.4"
+  },
+  "scripts": {
+    "build": "tsc src/*"
+  }
+}
