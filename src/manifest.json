@@ -1,0 +1,20 @@
+{
+  "name": "Recommendation bleach",
+  "version": "0.0.1",
+  "description": "",
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.youtube.com/"
+      ],
+      "js": [
+        "content-script.js"
+      ]
+    }
+  ],
+  "manifest_version": 3
+}
