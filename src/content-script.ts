@@ -10,6 +10,16 @@ const cb = function (_, __) {
     const links = [];
     channels.forEach((e) =>
         links.push(e.getAttribute('href')));
+
+    const contents = document.querySelector('#contents')
+    const list = contents.querySelectorAll('#content')
+    list.forEach((e) => {
+        const link = e.querySelector('#avatar-link')
+        const href = link.getAttribute('href')
+        if (links.indexOf(href) < 0) {
+            e.setAttribute('style', 'display: none;')
+        }
+    })
 }
 
 const observer = new MutationObserver(cb)
