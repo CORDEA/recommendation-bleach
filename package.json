@@ -10,6 +10,6 @@
     "typescript": "^4.6.4"
   },
   "scripts": {
-    "build": "tsc src/*"
+    "build": "tsc src/*.ts"
   }
 }
