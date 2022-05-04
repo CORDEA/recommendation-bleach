@@ -5,12 +5,24 @@ const config = {attributes: false, childList: true, subtree: true}
 let contentsLength = 0
 let links = []
 
+function createMask(): HTMLElement {
+    const mask = document.createElement('div')
+    mask.setAttribute(
+        'style',
+        'position: absolute; width: 100%; height: 100%;' +
+        'background-color: rgba(0, 0, 0, 0.8); z-index: 301;'
+    )
+    return mask;
+}
+
 function createShowButton(): HTMLButtonElement {
     const button = document.createElement('button')
     button.setAttribute('id', 'rb-show')
     button.setAttribute(
         'style',
-        'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'
+        'position: absolute; top: 50%; left: 50%;' +
+        'transform: translate(-50%, -50%);' +
+        'background-color: rgba(255, 255, 255, 0.3); z-index: 302;'
     )
     button.innerHTML = 'Show'
     return button;
@@ -23,12 +35,14 @@ function bleachContent(e: Element) {
     avatar.setAttribute('style', 'visibility: hidden;')
     if (e.querySelector('#rb-show') == null) {
         const button = createShowButton()
+        const mask = createMask()
         button.addEventListener('click', () => {
             thumbnail.removeAttribute('style')
             avatar.removeAttribute('style')
             e.removeChild(button)
+            e.removeChild(mask)
         })
-        e.appendChild(button)
+        e.append(mask, button)
     }
 }
 
