@@ -16,6 +16,22 @@ function createShowButton(): HTMLButtonElement {
     return button;
 }
 
+function bleachContent(e: Element) {
+    const thumbnail = e.querySelector('ytd-thumbnail')
+    const avatar = e.querySelector('#avatar-link')
+    thumbnail.setAttribute('style', 'visibility: hidden;')
+    avatar.setAttribute('style', 'visibility: hidden;')
+    if (e.querySelector('#rb-show') == null) {
+        const button = createShowButton()
+        button.addEventListener('click', () => {
+            thumbnail.removeAttribute('style')
+            avatar.removeAttribute('style')
+            e.removeChild(button)
+        })
+        e.appendChild(button)
+    }
+}
+
 function bleach() {
     if (links.length <= 0) {
         return
@@ -30,16 +46,7 @@ function bleach() {
         const link = e.querySelector('#avatar-link')
         const href = link.getAttribute('href')
         if (links.indexOf(href) < 0) {
-            const container = e.querySelector('#dismissible')
-            container.setAttribute('style', 'display: none;')
-            if (e.querySelector('#rb-show') == null) {
-                const button = createShowButton()
-                button.addEventListener('click', () => {
-                    container.removeAttribute('style')
-                    e.removeChild(button)
-                })
-                e.appendChild(button)
-            }
+            bleachContent(e)
         }
     })
 }
